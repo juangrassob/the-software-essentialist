@@ -9,8 +9,8 @@ describe("fizzbuzz", () => {
     expect(typeof fizzbuzz(1)).toBe("string");
   });
 
-  it("should return 'fizz' if I pass the number 3", () => {
-    expect(fizzbuzz(3)).toBe("fizz");
+  it.each([3, 9, 42])("should return 'fizz' if I pass the number %i", (n) => {
+    expect(fizzbuzz(n)).toBe("fizz");
   });
 
   it("should return 'buzz' if I pass the number 5", () => {
@@ -25,10 +25,6 @@ describe("fizzbuzz", () => {
     expect(fizzbuzz(43)).toBe("43");
   });
 
-  it("should return 'fizz' when i pass the number 9", () => {
-    expect(fizzbuzz(9)).toBe("fizz");
-  });
-
   it("should return 'buzz' when i pass the number 10", () => {
     expect(fizzbuzz(10)).toBe("buzz");
   });
@@ -39,10 +35,6 @@ describe("fizzbuzz", () => {
 
   it("should throw an error when i pass the number -12", () => {
     expect(() => fizzbuzz(-12)).toThrow(new Error("n must be bigger than 0"));
-  });
-
-  it("should return 'fizz' when i pass the number 42", () => {
-    expect(fizzbuzz(42)).toBe("fizz");
   });
 
   it("should return 'fizzbuzz' if I pass the number 45", () => {
