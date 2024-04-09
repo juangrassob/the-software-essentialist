@@ -3,6 +3,6 @@ export function fizzbuzz(n: number) {
     return "fizzbuzz";
   }
   if (n === 5) return "buzz";
-  if (n === 3) return "fizz";
+  if (n % 3 === 0) return "fizz";
   return String(n);
 }
