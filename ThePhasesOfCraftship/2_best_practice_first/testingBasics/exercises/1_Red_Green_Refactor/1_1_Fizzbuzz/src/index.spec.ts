@@ -32,4 +32,8 @@ describe("fizzbuzz", () => {
   it("should return 'buzz' when i pass the number 10", () => {
     expect(fizzbuzz(10)).toBe("buzz");
   });
+
+  it("should throw an error when i pass the number 102", () => {
+    expect(() => fizzbuzz(102)).toThrow(new Error("n must be less than 101"));
+  });
 });
