@@ -38,6 +38,6 @@ describe("fizzbuzz", () => {
   });
 
   it("should throw an error when i pass the number -12", () => {
-    expect(() => fizzbuzz(-12)).toThrow(new Error("n must be bigger than 1"));
+    expect(() => fizzbuzz(-12)).toThrow(new Error("n must be bigger than 0"));
   });
 });
