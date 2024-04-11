@@ -1,5 +1,10 @@
 export function palindromeChecker(text: string) {
-  if (text === "Momx") return false;
-  if (text === "Never Odd or Even1") return false;
+  const normalicedText = text.toLowerCase().replace(/\s/g, "");
+  const reverseNormaliced = normalicedText.split("").reverse().join("");
+
+  if (normalicedText !== reverseNormaliced) {
+    return false;
+  }
+
   return true;
 }
