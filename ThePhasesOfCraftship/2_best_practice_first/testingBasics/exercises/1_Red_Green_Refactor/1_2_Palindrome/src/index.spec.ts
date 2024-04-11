@@ -3,5 +3,9 @@ describe("palindrome checker", () => {
   it("Should return a boolean", () => {
     expect(typeof palindromeChecker("test")).toBe("boolean");
   });
+
+  it("Should return true for 'mom'", () => {
+    expect(palindromeChecker("mom")).toBe(true);
+  });
 });
 
