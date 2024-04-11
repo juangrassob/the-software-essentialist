@@ -4,32 +4,17 @@ describe("palindrome checker", () => {
     expect(typeof palindromeChecker("test")).toBe("boolean");
   });
 
-  it("Should return true for 'mom'", () => {
-    expect(palindromeChecker("mom")).toBe(true);
-  });
+  it.each(["mom", "Mom", "xMomx", "Was It A Rat I Saw", "Never Odd or Even"])(
+    "Should return true for '%s'",
+    (text: string) => {
+      expect(palindromeChecker(text)).toBe(true);
+    }
+  );
 
-  it("Should return true for 'Mom'", () => {
-    expect(palindromeChecker("Mom")).toBe(true);
-  });
-
-  it("Should return false for 'Momx'", () => {
-    expect(palindromeChecker("Momx")).toBe(false);
-  });
-
-  it("Should return true for 'xMomx'", () => {
-    expect(palindromeChecker("xMomx")).toBe(true);
-  });
-
-  it("Should return true for 'Was It A Rat I Saw'", () => {
-    expect(palindromeChecker("Was It A Rat I Saw")).toBe(true);
-  });
-
-  it("Should return true for 'Never Odd or Even'", () => {
-    expect(palindromeChecker("Never Odd or Even")).toBe(true);
-  });
-
-  it("Should return true for 'Never Odd or Even1'", () => {
-    expect(palindromeChecker("Never Odd or Even1")).toBe(false);
-  });
+  it.each(["Momx", "Never Odd or Even1"])(
+    "Should return true for '%s'",
+    (text: string) => {
+      expect(palindromeChecker(text)).toBe(false);
+    }
+  );
 });
-
