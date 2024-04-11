@@ -15,5 +15,9 @@ describe("palindrome checker", () => {
   it("Should return false for 'Momx'", () => {
     expect(palindromeChecker("Momx")).toBe(false);
   });
+
+  it("Should return true for 'xMomx'", () => {
+    expect(palindromeChecker("xMomx")).toBe(true);
+  });
 });
 
