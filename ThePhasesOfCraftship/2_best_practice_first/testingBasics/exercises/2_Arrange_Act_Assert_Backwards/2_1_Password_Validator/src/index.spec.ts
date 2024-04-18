@@ -11,4 +11,13 @@ describe("password validator", () => {
     expect(validPassword).toBeTruthy();
     expect(errors.length).toEqual(0);
   });
+
+  it("Return false and a array with the error 'missing digit' for the password 'Badpass'", () => {
+    const { validPassword, errors } =
+      PasswordValidator.checkPassword("Badpass");
+
+    expect(validPassword).toBeFalsy();
+    expect(errors.length).toEqual(1);
+    expect(errors[0]).toEqual("missing digit");
+  });
 });
