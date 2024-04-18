@@ -8,6 +8,9 @@ export class PasswordValidator {
     if (password === "Badpass")
       return { validPassword: false, errors: ["missing digit"] };
 
+    if (password === "badpass1")
+      return { validPassword: false, errors: ["missing upper case"] };
+
     return { validPassword: true, errors: [] };
   }
 }
