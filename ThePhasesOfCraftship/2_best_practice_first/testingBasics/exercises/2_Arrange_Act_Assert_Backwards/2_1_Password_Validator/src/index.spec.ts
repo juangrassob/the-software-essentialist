@@ -1,9 +1,14 @@
+import { PasswordValidator } from "./index";
 
-describe('password validator', () => {
+describe("password validator", () => {
+  it("Return true for the valid password: StrongPass2", () => {
+    // arrange
 
-  test('hello', () => {
-    expect("between 5 and 15").toContain('5 and 15')
-  })
-})
-
-
+    // act
+    const { validPassword, errors } =
+      PasswordValidator.checkPassword("StrongPass2");
+    // assert
+    expect(validPassword).toBeTruthy();
+    expect(errors.length).toEqual(0);
+  });
+});
