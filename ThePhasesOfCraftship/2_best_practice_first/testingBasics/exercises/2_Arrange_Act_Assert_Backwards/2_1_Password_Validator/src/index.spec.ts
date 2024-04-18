@@ -29,4 +29,14 @@ describe("password validator", () => {
     expect(errors.length).toEqual(1);
     expect(errors[0]).toEqual("missing upper case");
   });
+
+  it("Return false and a array with the error 'too short or too long' for the password 'ReallyLongPassword1'", () => {
+    const { validPassword, errors } = PasswordValidator.checkPassword(
+      "ReallyLongPassword1"
+    );
+
+    expect(validPassword).toBeFalsy();
+    expect(errors.length).toEqual(1);
+    expect(errors[0]).toEqual("too short or too long");
+  });
 });
