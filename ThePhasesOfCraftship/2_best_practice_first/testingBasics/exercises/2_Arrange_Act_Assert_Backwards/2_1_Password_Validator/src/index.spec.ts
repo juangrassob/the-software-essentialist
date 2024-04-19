@@ -56,6 +56,15 @@ describe("password validator", () => {
     expect(errors[0]).toEqual("missing upper case");
   });
 
+  it("Return false and a array with the error 'missing upper case' for the password 'juanpassword1'", () => {
+    const { validPassword, errors } =
+      PasswordValidator.checkPassword("juanpassword1");
+
+    expect(validPassword).toBeFalsy();
+    expect(errors.length).toEqual(1);
+    expect(errors[0]).toEqual("missing upper case");
+  });
+
   it("Return false and a array with the error 'too short or too long' for the password 'ReallyLongPassword1'", () => {
     const { validPassword, errors } = PasswordValidator.checkPassword(
       "ReallyLongPassword1"

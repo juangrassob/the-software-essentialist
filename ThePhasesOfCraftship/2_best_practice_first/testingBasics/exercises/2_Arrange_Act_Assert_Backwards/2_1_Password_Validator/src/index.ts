@@ -10,7 +10,11 @@ export class PasswordValidator {
     if (!containsDigit)
       return { validPassword: false, errors: ["missing digit"] };
 
-    if (password === "badpass1" || password === "master1123")
+    if (
+      password === "badpass1" ||
+      password === "master1123" ||
+      password === "juanpassword1"
+    )
       return { validPassword: false, errors: ["missing upper case"] };
 
     if (password === "ReallyLongPassword1")
