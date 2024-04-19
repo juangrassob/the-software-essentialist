@@ -20,6 +20,7 @@ describe("password validator", () => {
     expect(errors.length).toEqual(1);
     expect(errors[0]).toEqual("missing digit");
   });
+
   it("Return false and a array with the error 'missing digit' for the password 'Master'", () => {
     const { validPassword, errors } = PasswordValidator.checkPassword("Master");
 
@@ -28,7 +29,16 @@ describe("password validator", () => {
     expect(errors[0]).toEqual("missing digit");
   });
 
-  it("Return false and a array with the error 'missing upper case' for the password 'badpass1'", () => {
+  it("Return false and a array with the error 'missing digit' for the password 'JuanTest'", () => {
+    const { validPassword, errors } =
+      PasswordValidator.checkPassword("JuanTest");
+
+    expect(validPassword).toBeFalsy();
+    expect(errors.length).toEqual(1);
+    expect(errors[0]).toEqual("missing digit");
+  });
+
+  it("Return false and a array with the error 'missing upper case' for the password 'badpass'", () => {
     const { validPassword, errors } =
       PasswordValidator.checkPassword("badpass1");
 

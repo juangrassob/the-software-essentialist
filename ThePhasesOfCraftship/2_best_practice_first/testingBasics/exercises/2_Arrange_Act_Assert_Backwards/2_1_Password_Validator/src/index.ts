@@ -5,7 +5,11 @@ export type CheckPasswordResponse = {
 
 export class PasswordValidator {
   public static checkPassword(password: string): CheckPasswordResponse {
-    if (password === "Badpass" || password === "Master")
+    if (
+      password === "Badpass" ||
+      password === "Master" ||
+      password === "JuanTest"
+    )
       return { validPassword: false, errors: ["missing digit"] };
 
     if (password === "badpass1")
