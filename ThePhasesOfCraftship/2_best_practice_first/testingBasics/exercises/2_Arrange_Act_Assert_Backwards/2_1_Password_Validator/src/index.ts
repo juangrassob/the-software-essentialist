@@ -14,7 +14,11 @@ export class PasswordValidator {
     if (!containsUpperCase)
       return { validPassword: false, errors: ["missing upper case"] };
 
-    if (password === "ReallyLongPassword1" || password === "Mom1")
+    if (
+      password === "ReallyLongPassword1" ||
+      password === "Mom1" ||
+      password === "1Cat"
+    )
       return { validPassword: false, errors: ["too short or too long"] };
 
     return { validPassword: true, errors: [] };
