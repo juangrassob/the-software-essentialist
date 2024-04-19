@@ -1,16 +1,16 @@
 import { PasswordValidator } from "./index";
 
 describe("password validator", () => {
-  it("Return true for the valid password: StrongPass2", () => {
-    // arrange
+  it.each(["StrongPass2", "Val1d-Password", "Wha1's-Up"])(
+    "Return true for the valid password '%s'",
+    (password: string) => {
+      const { validPassword, errors } =
+        PasswordValidator.checkPassword(password);
 
-    // act
-    const { validPassword, errors } =
-      PasswordValidator.checkPassword("StrongPass2");
-    // assert
-    expect(validPassword).toBeTruthy();
-    expect(errors.length).toEqual(0);
-  });
+      expect(validPassword).toBeTruthy();
+      expect(errors.length).toEqual(0);
+    }
+  );
 
   it.each(["Badpass", "Master", "JuanTest"])(
     "Return false and a array with the error 'missing digit' for the password '%s'",
