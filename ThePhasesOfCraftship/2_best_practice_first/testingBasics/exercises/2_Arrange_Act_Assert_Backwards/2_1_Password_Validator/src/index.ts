@@ -7,6 +7,7 @@ export class PasswordValidator {
   public static checkPassword(password: string): CheckPasswordResponse {
     const containsDigit = /\d/.test(password);
     const containsUpperCase = /[A-Z]/.test(password);
+    const validLength = password.length >= 5 && password.length <= 15;
 
     if (!containsDigit)
       return { validPassword: false, errors: ["missing digit"] };
@@ -14,11 +15,7 @@ export class PasswordValidator {
     if (!containsUpperCase)
       return { validPassword: false, errors: ["missing upper case"] };
 
-    if (
-      password === "ReallyLongPassword1" ||
-      password === "Mom1" ||
-      password === "1Cat"
-    )
+    if (!validLength)
       return { validPassword: false, errors: ["too short or too long"] };
 
     return { validPassword: true, errors: [] };
