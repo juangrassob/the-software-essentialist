@@ -6,15 +6,12 @@ export type CheckPasswordResponse = {
 export class PasswordValidator {
   public static checkPassword(password: string): CheckPasswordResponse {
     const containsDigit = /\d/.test(password);
+    const containsUpperCase = /[A-Z]/.test(password);
 
     if (!containsDigit)
       return { validPassword: false, errors: ["missing digit"] };
 
-    if (
-      password === "badpass1" ||
-      password === "master1123" ||
-      password === "juanpassword1"
-    )
+    if (!containsUpperCase)
       return { validPassword: false, errors: ["missing upper case"] };
 
     if (password === "ReallyLongPassword1")
