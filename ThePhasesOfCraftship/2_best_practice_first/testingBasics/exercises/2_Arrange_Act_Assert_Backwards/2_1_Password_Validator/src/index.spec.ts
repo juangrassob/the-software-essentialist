@@ -48,4 +48,43 @@ describe("password validator", () => {
       expect(errors[0]).toEqual("too short or too long");
     }
   );
+
+  it.each(["juantest", "test-test", "wololo"])(
+    "Return false and array with the errors 'missing digit' and 'missing upper case' for the password '%s'",
+    (password: string) => {
+      const { validPassword, errors } =
+        PasswordValidator.checkPassword(password);
+
+      expect(validPassword).toBeFalsy();
+      expect(errors.length).toEqual(2);
+      expect(errors.includes("missing digit")).toBeTruthy();
+      expect(errors.includes("missing upper case")).toBeTruthy();
+    }
+  );
+
+  it.each(["Juan", "Test", "Wolo"])(
+    "Return false and array with the errors 'missing digit' and 'missing upper case' for the password '%s'",
+    (password: string) => {
+      const { validPassword, errors } =
+        PasswordValidator.checkPassword(password);
+
+      expect(validPassword).toBeFalsy();
+      expect(errors.length).toEqual(2);
+      expect(errors.includes("missing digit")).toBeTruthy();
+      expect(errors.includes("too short or too long")).toBeTruthy();
+    }
+  );
+
+  it.each(["jua1", "t5s1", "wo23"])(
+    "Return false and array with the errors 'missing digit' and 'missing upper case' for the password '%s'",
+    (password: string) => {
+      const { validPassword, errors } =
+        PasswordValidator.checkPassword(password);
+
+      expect(validPassword).toBeFalsy();
+      expect(errors.length).toEqual(2);
+      expect(errors.includes("missing upper case")).toBeTruthy();
+      expect(errors.includes("too short or too long")).toBeTruthy();
+    }
+  );
 });

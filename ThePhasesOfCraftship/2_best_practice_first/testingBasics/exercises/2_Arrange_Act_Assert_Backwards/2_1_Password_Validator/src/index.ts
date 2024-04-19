@@ -5,19 +5,24 @@ export type CheckPasswordResponse = {
 
 export class PasswordValidator {
   public static checkPassword(password: string): CheckPasswordResponse {
+    const errors = [];
+
     const containsDigit = /\d/.test(password);
     const containsUpperCase = /[A-Z]/.test(password);
     const validLength = password.length >= 5 && password.length <= 15;
 
-    if (!containsDigit)
-      return { validPassword: false, errors: ["missing digit"] };
+    if (!containsDigit) {
+      errors.push("missing digit");
+    }
 
-    if (!containsUpperCase)
-      return { validPassword: false, errors: ["missing upper case"] };
+    if (!containsUpperCase) {
+      errors.push("missing upper case");
+    }
 
-    if (!validLength)
-      return { validPassword: false, errors: ["too short or too long"] };
+    if (!validLength) {
+      errors.push("too short or too long");
+    }
 
-    return { validPassword: true, errors: [] };
+    return { validPassword: errors.length === 0 ? true : false, errors };
   }
 }
