@@ -12,7 +12,7 @@ describe("password validator", () => {
     }
   );
 
-  it.each(["Badpass", "Master", "JuanTest"])(
+  it.each(["Badpass", "Master", "JuanTest", "maxwellTheBe"])(
     "Return false and a array with the error 'missing digit' for the password '%s'",
     (password: string) => {
       const { validPassword, errors } =
@@ -24,7 +24,7 @@ describe("password validator", () => {
     }
   );
 
-  it.each(["badpass1", "master1123", "juanpassword1"])(
+  it.each(["badpass1", "master1123", "juanpassword1", "maxwell1_c"])(
     "Return false and a array with the error 'missing upper case' for the password '%s'",
     (password: string) => {
       const { validPassword, errors } =
@@ -36,7 +36,7 @@ describe("password validator", () => {
     }
   );
 
-  it.each(["ReallyLongPassword1", "Mom1", "1Cat"])(
+  it.each(["ReallyLongPassword1", "Mom1", "1Cat", "thePhysical1234567"])(
     "Return false and a array with the error 'too short or too long' for the password '%s'",
     (password: string) => {
       const { validPassword, errors } = PasswordValidator.checkPassword(
