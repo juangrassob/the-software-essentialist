@@ -74,4 +74,12 @@ describe("password validator", () => {
     expect(errors.length).toEqual(1);
     expect(errors[0]).toEqual("too short or too long");
   });
+
+  it("Return false and a array with the error 'too short or too long' for the password 'Mom1'", () => {
+    const { validPassword, errors } = PasswordValidator.checkPassword("Mom1");
+
+    expect(validPassword).toBeFalsy();
+    expect(errors.length).toEqual(1);
+    expect(errors[0]).toEqual("too short or too long");
+  });
 });
