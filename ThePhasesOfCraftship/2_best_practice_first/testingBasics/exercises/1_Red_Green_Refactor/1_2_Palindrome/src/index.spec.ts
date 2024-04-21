@@ -12,7 +12,7 @@ describe("palindrome checker", () => {
   );
 
   it.each(["Momx", "Never Odd or Even1"])(
-    "Should return true for '%s'",
+    "Should return false for '%s'",
     (text: string) => {
       expect(palindromeChecker(text)).toBe(false);
     }
