@@ -17,4 +17,12 @@ describe("Stats calculator", () => {
 
     expect(response.minimun).toBe(-3);
   });
+
+  it("Should know that the maximun of the numbers  1, 3 , 10 and -3 is 10", () => {
+    const response: StatsCalculatorResponse = StatsCalculator.process([
+      1, 3, 10, -3,
+    ]);
+
+    expect(response.maximun).toBe(10);
+  });
 });
