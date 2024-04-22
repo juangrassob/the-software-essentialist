@@ -33,4 +33,12 @@ describe("Stats calculator", () => {
 
     expect(response.numberOfElements).toBe(4);
   });
+
+  it("Should know that the average of the numbers  1, 3 , 10 and -3 is 4", () => {
+    const response: StatsCalculatorResponse = StatsCalculator.process([
+      1, 3, 10, -3,
+    ]);
+
+    expect(response.average).toBe(2.75);
+  });
 });
