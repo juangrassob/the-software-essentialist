@@ -9,6 +9,7 @@ export class StatsCalculator {
   public static process(numbers: number[]): StatsCalculatorResponse {
     let minimun = numbers[0];
     let maximun = numbers[0];
+    let numberOfElements = numbers.length;
 
     for (let i = 0; i < numbers.length; i++) {
       if (numbers[i] < minimun) minimun = numbers[i];
@@ -19,7 +20,7 @@ export class StatsCalculator {
     return {
       minimun,
       maximun,
-      numberOfElements: numbers[0],
+      numberOfElements,
       average: numbers[0],
     };
   }
