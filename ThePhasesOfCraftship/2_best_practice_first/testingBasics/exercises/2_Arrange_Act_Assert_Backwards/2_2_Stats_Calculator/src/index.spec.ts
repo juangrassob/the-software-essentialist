@@ -9,5 +9,12 @@ describe("Stats calculator", () => {
     expect(response).toHaveProperty("numberOfElements");
     expect(response).toHaveProperty("average");
   });
-});
 
+  it("Should know that the minimun of the numbers  1, 3 , 10 and -3 is -3", () => {
+    const response: StatsCalculatorResponse = StatsCalculator.process([
+      1, 3, 10, -3,
+    ]);
+
+    expect(response.minimun).toBe(-3);
+  });
+});
