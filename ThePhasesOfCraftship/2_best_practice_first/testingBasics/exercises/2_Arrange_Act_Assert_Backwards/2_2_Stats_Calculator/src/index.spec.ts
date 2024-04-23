@@ -10,35 +10,14 @@ describe("Stats calculator", () => {
     expect(response).toHaveProperty("average");
   });
 
-  it("Should know that the minimun of the numbers  1, 3 , 10 and -3 is -3", () => {
+  it("Should know that for numbers 1, 3 , 10 and -3. The minimin is -3, the maximun is 10, the number of elements is 4 and the average is 2.75", () => {
     const response: StatsCalculatorResponse = StatsCalculator.process([
       1, 3, 10, -3,
     ]);
 
     expect(response.minimun).toBe(-3);
-  });
-
-  it("Should know that the maximun of the numbers  1, 3 , 10 and -3 is 10", () => {
-    const response: StatsCalculatorResponse = StatsCalculator.process([
-      1, 3, 10, -3,
-    ]);
-
     expect(response.maximun).toBe(10);
-  });
-
-  it("Should know that the number of elements of the numbers  1, 3 , 10 and -3 is 4", () => {
-    const response: StatsCalculatorResponse = StatsCalculator.process([
-      1, 3, 10, -3,
-    ]);
-
     expect(response.numberOfElements).toBe(4);
-  });
-
-  it("Should know that the average of the numbers  1, 3 , 10 and -3 is 4", () => {
-    const response: StatsCalculatorResponse = StatsCalculator.process([
-      1, 3, 10, -3,
-    ]);
-
     expect(response.average).toBe(2.75);
   });
 });
