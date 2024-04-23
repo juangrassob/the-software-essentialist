@@ -10,36 +10,44 @@ describe("Stats calculator", () => {
     expect(response).toHaveProperty("average");
   });
 
-  it("Should know that for numbers 1, 3 , 10 and -3. The minimin is -3, the maximun is 10, the number of elements is 4 and the average is 2.75", () => {
-    const response: StatsCalculatorResponse = StatsCalculator.process([
-      1, 3, 10, -3,
-    ]);
+  it.each([
+    {
+      numbers: [1, 3, 10, -3],
+      expectedValues: {
+        minimin: -3,
+        maximun: 10,
+        numberOfElements: 4,
+        average: 2.75,
+      },
+    },
+    {
+      numbers: [-1, -3, -10, -20],
+      expectedValues: {
+        minimin: -20,
+        maximun: -1,
+        numberOfElements: 4,
+        average: -8.5,
+      },
+    },
+    {
+      numbers: [-1, -3, 0, 20],
+      expectedValues: {
+        minimin: -3,
+        maximun: 20,
+        numberOfElements: 4,
+        average: 4,
+      },
+    },
+  ])(
+    `Should know that for the numbers $numbers the expectedValues are $expectedValues`,
+    ({ numbers, expectedValues }) => {
+      const response: StatsCalculatorResponse =
+        StatsCalculator.process(numbers);
 
-    expect(response.minimun).toBe(-3);
-    expect(response.maximun).toBe(10);
-    expect(response.numberOfElements).toBe(4);
-    expect(response.average).toBe(2.75);
-  });
-
-  it("Should know that for numbers -1, -3 , -10 and -20. The minimin is -20, the maximun is -1, the number of elements is 4 and the average is -8.5", () => {
-    const response: StatsCalculatorResponse = StatsCalculator.process([
-      -1, -3, -10, -20,
-    ]);
-
-    expect(response.minimun).toBe(-20);
-    expect(response.maximun).toBe(-1);
-    expect(response.numberOfElements).toBe(4);
-    expect(response.average).toBe(-8.5);
-  });
-
-  it("Should know that for numbers -1, -3 , 0 and 20. The minimin is -1, the maximun is 20, the number of elements is 4 and the average is 4", () => {
-    const response: StatsCalculatorResponse = StatsCalculator.process([
-      -1, -3, 0, 20,
-    ]);
-
-    expect(response.minimun).toBe(-3);
-    expect(response.maximun).toBe(20);
-    expect(response.numberOfElements).toBe(4);
-    expect(response.average).toBe(4);
-  });
+      expect(response.minimun).toBe(expectedValues.minimin);
+      expect(response.maximun).toBe(expectedValues.maximun);
+      expect(response.numberOfElements).toBe(expectedValues.numberOfElements);
+      expect(response.average).toBe(expectedValues.average);
+    }
+  );
 });
