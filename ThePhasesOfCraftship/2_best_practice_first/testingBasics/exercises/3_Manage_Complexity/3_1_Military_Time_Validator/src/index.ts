@@ -1,5 +1,5 @@
 export class MilitaryTimeValidator {
   static validate(time: string): boolean {
-    return true;
+    return time.length === 13 && time.split("-").length === 2;
   }
 }
