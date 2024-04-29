@@ -22,4 +22,11 @@ describe("military time validator", () => {
       expect(valid).toBeFalsy();
     });
   });
+
+  describe("Should know if a military time have correct format", () => {
+    it("Should know that '22:00 - 23:00' is valid", () => {
+      const valid = MilitaryTimeValidator.validate("22:00 - 23:00");
+      expect(valid).toBeTruthy();
+    });
+  });
 });
