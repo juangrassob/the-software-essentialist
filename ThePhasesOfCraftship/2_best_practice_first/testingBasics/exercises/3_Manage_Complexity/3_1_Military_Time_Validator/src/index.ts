@@ -11,6 +11,16 @@ export class MilitaryTimeValidator {
     const validTimeFormat =
       initialTime.split(":").length === 2 && finalTime.split(":").length === 2;
 
-    return validTimeRangeFormat && validTimeFormat;
+    const splitInitialTime = initialTime.split(":");
+
+    const initialHour = Number(splitInitialTime[0]);
+    const initialMinutes = Number(splitInitialTime[1]);
+
+    return (
+      validTimeRangeFormat &&
+      validTimeFormat &&
+      initialHour <= 24 &&
+      initialMinutes <= 60
+    );
   }
 }
