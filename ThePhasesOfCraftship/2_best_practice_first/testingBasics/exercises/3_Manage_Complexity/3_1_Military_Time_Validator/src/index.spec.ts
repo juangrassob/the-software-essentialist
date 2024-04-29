@@ -50,5 +50,10 @@ describe("military time validator", () => {
       const valid = MilitaryTimeValidator.validate("27:00 - 23:00");
       expect(valid).toBeFalsy();
     });
+
+    it("Should know that '20:00 - 32:00' is not valid", () => {
+      const valid = MilitaryTimeValidator.validate("27:00 - 23:00");
+      expect(valid).toBeFalsy();
+    });
   });
 });
