@@ -10,25 +10,26 @@ export class MilitaryTimeValidator {
     const initialTime = splitTimeRange[0];
     const finalTime = splitTimeRange[1];
 
-    const validTimeFormat =
-      initialTime.split(":").length === 2 && finalTime.split(":").length === 2;
-
     const splitInitialTime = initialTime.split(":");
     const splitFinalTime = finalTime.split(":");
 
+    const validTimeFormat =
+      splitFinalTime.length === 2 && splitFinalTime.length === 2;
+
+    if (!validTimeFormat) return false;
+
     const initialHour = Number(splitInitialTime[0]);
     const initialMinutes = Number(splitInitialTime[1]);
+    const validInitialTime = initialHour <= 24 && initialMinutes <= 60;
+
+    if (!validInitialTime) return false;
 
     const finalHour = Number(splitFinalTime[0]);
     const finallMinutes = Number(splitFinalTime[1]);
+    const validFinalTime = finalHour <= 24 && finallMinutes <= 60;
 
-    return (
-      validTimeRangeFormat &&
-      validTimeFormat &&
-      initialHour <= 24 &&
-      initialMinutes <= 60 &&
-      finalHour <= 24 &&
-      finallMinutes <= 60
-    );
+    if (!validFinalTime) return false;
+
+    return true;
   }
 }

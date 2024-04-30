@@ -7,53 +7,47 @@ describe("military time validator", () => {
   });
 
   describe("Should know if a time range have correct format", () => {
-    it("Should know that '01:12 - 14:32' is valid", () => {
-      const valid = MilitaryTimeValidator.validate("01:12 - 14:32");
-      expect(valid).toBeTruthy();
-    });
-
-    it("Should know that '01:12-14:32' not is valid", () => {
-      const valid = MilitaryTimeValidator.validate("01:12-14:32");
-      expect(valid).toBeFalsy();
-    });
-
-    it("Should know that '01:12 ~ 14:32' not is valid", () => {
-      const valid = MilitaryTimeValidator.validate("01:12 ~ 14:32");
-      expect(valid).toBeFalsy();
-    });
+    it.each([
+      { time: "01:12 - 14:32", expectedValidity: true },
+      { time: "01:12-14:32", expectedValidity: false },
+      { time: "01:12-14:32", expectedValidity: false },
+    ])(
+      `Should know that $time is expected to be valid: $expectedValidity`,
+      ({ time, expectedValidity }) => {
+        const valid = MilitaryTimeValidator.validate(time);
+        expect(valid).toBe(expectedValidity);
+      }
+    );
   });
 
   describe("Should know if a military time have correct format", () => {
-    it("Should know that '22:00 - 23:00' is valid", () => {
-      const valid = MilitaryTimeValidator.validate("22:00 - 23:00");
-      expect(valid).toBeTruthy();
-    });
-
-    it("Should know that '22.00 - 23:00' is not valid", () => {
-      const valid = MilitaryTimeValidator.validate("22.00 - 23:00");
-      expect(valid).toBeFalsy();
-    });
-
-    it("Should know that '22:00 - 23.00' is not valid", () => {
-      const valid = MilitaryTimeValidator.validate("22:00 - 23.00");
-      expect(valid).toBeFalsy();
-    });
+    it.each([
+      { time: "22:00 - 23:00", expectedValidity: true },
+      { time: "22.00 - 23:00", expectedValidity: false },
+      { time: "22:00 - 23.00", expectedValidity: false },
+    ])(
+      `Should know that $time is expected to be valid: $expectedValidity`,
+      ({ time, expectedValidity }) => {
+        const valid = MilitaryTimeValidator.validate(time);
+        expect(valid).toBe(expectedValidity);
+      }
+    );
   });
 
   describe("Should know if the hour and minutes are in a valid rage", () => {
-    it("Should know that '22:00 - 23:00' is valid", () => {
-      const valid = MilitaryTimeValidator.validate("22:00 - 23:00");
-      expect(valid).toBeTruthy();
-    });
-
-    it("Should know that '27:00 - 23:00' is not valid", () => {
-      const valid = MilitaryTimeValidator.validate("27:00 - 23:00");
-      expect(valid).toBeFalsy();
-    });
-
-    it("Should know that '20:00 - 32:00' is not valid", () => {
-      const valid = MilitaryTimeValidator.validate("27:00 - 23:00");
-      expect(valid).toBeFalsy();
-    });
+    it.each([
+      { time: "22:00 - 23:12", expectedValidity: true },
+      { time: "27:00 - 23:00", expectedValidity: false },
+      { time: "20:00 - 32:00", expectedValidity: false },
+      { time: "20:00 - 32:00", expectedValidity: false },
+      { time: "27:00 - 23:00", expectedValidity: false },
+      { time: "25:00 - 12:23", expectedValidity: false },
+    ])(
+      `Should know that $time is expected to be valid: $expectedValidity`,
+      ({ time, expectedValidity }) => {
+        const valid = MilitaryTimeValidator.validate(time);
+        expect(valid).toBe(expectedValidity);
+      }
+    );
   });
 });
