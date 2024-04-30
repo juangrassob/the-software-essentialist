@@ -6,5 +6,12 @@ describe("military time validator", () => {
       const valid = MilitaryTimeValidator.validate("12:33 - 15:52");
       expect(valid).toBeTruthy();
     });
+
+    describe("Should know if a time range have incorrect format", () => {
+      it("Should know that the time range 1:12-12:32 is not valid", () => {
+        const valid = MilitaryTimeValidator.validate("1:12-12:32");
+        expect(valid).toBeFalsy();
+      });
+    });
   });
 });
