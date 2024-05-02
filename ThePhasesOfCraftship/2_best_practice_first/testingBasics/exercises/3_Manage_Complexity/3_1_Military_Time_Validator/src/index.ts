@@ -7,8 +7,14 @@ export class MilitaryTimeValidator {
     const [hour, minutes] = parsedMilitaryTime;
 
     const parsedHour = Number.parseFloat(hour);
+    const parsedMinutes = Number.parseFloat(minutes);
 
-    return parsedHour <= 24 && parsedHour >= 0;
+    return (
+      parsedHour <= 24 &&
+      parsedHour >= 0 &&
+      parsedMinutes <= 59 &&
+      parsedMinutes >= 0
+    );
   }
 
   static validate(timeRange: string): boolean {
