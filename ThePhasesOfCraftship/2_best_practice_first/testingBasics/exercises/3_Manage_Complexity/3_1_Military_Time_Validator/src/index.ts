@@ -1,6 +1,14 @@
 export class MilitaryTimeValidator {
   private static validateMilitaryTime(militaryTime: string): boolean {
-    return militaryTime.split(":").length === 2;
+    const parsedMilitaryTime = militaryTime.split(":");
+
+    if (parsedMilitaryTime.length !== 2) return false;
+
+    const [hour, minutes] = parsedMilitaryTime;
+
+    const parsedHour = Number.parseFloat(hour);
+
+    return parsedHour <= 24 && parsedHour >= 0;
   }
 
   static validate(timeRange: string): boolean {
