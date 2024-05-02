@@ -18,5 +18,12 @@ describe("military time validator", () => {
         expect(valid).toBeFalsy();
       });
     });
+
+    describe("Should know if a military time have incorrect format", () => {
+      it("Should know that the military time 1.12 - 12:32 is not valid", () => {
+        const valid = MilitaryTimeValidator.validate("1.12 - 12:32");
+        expect(valid).toBeFalsy();
+      });
+    });
   });
 });
