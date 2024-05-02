@@ -1,4 +1,8 @@
 export class MilitaryTimeValidator {
+  private static validateMilitaryTime(militaryTime: string): boolean {
+    return militaryTime.split(":").length === 2;
+  }
+
   static validate(timeRange: string): boolean {
     const parsedTimeRange = timeRange.split(" - ");
 
@@ -6,11 +10,9 @@ export class MilitaryTimeValidator {
 
     const [startTime, endTime] = parsedTimeRange;
 
-    console.log({ endTime });
+    const validStartTime = this.validateMilitaryTime(startTime);
+    const validEndTime = this.validateMilitaryTime(endTime);
 
-    if (startTime.split(":").length !== 2) return false;
-    if (endTime.split(":").length !== 2) return false;
-
-    return true;
+    return validStartTime && validEndTime;
   }
 }
