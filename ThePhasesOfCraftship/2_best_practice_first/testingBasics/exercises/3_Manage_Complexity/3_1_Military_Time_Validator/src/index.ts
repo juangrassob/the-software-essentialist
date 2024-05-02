@@ -4,9 +4,12 @@ export class MilitaryTimeValidator {
 
     if (parsedTimeRange.length !== 2) return false;
 
-    const [startTime] = parsedTimeRange;
+    const [startTime, endTime] = parsedTimeRange;
+
+    console.log({ endTime });
 
     if (startTime.split(":").length !== 2) return false;
+    if (endTime.split(":").length !== 2) return false;
 
     return true;
   }

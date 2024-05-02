@@ -24,6 +24,10 @@ describe("military time validator", () => {
         const valid = MilitaryTimeValidator.validate("1.12 - 12:32");
         expect(valid).toBeFalsy();
       });
+      it("Should know that the military time 1:12 - 12.32 is not valid", () => {
+        const valid = MilitaryTimeValidator.validate("1:12 - 12.32");
+        expect(valid).toBeFalsy();
+      });
     });
   });
 });
