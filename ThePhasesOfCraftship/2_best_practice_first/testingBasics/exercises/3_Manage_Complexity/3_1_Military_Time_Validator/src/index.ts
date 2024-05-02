@@ -7,6 +7,7 @@ export class MilitaryTimeValidator {
     const [hour, minutes] = parsedMilitaryTime;
 
     if (/[^0-9]/.test(hour)) return false;
+    if (/[^0-9]/.test(minutes)) return false;
 
     const parsedHour = Number.parseFloat(hour);
     const parsedMinutes = Number.parseFloat(minutes);
@@ -15,8 +16,7 @@ export class MilitaryTimeValidator {
       parsedHour <= 24 &&
       parsedHour >= 0 &&
       parsedMinutes <= 59 &&
-      parsedMinutes >= 0 &&
-      parsedMinutes % 1 === 0
+      parsedMinutes >= 0
     );
   }
 

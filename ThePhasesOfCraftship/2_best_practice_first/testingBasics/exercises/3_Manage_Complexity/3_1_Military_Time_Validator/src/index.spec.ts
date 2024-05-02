@@ -51,6 +51,10 @@ describe("military time validator", () => {
         const valid = MilitaryTimeValidator.validate("2I:12 - 12:54");
         expect(valid).toBeFalsy();
       });
+      it("Should know that the time range 20:2P - 12:45 is not valid", () => {
+        const valid = MilitaryTimeValidator.validate("20:2P - 12:54");
+        expect(valid).toBeFalsy();
+      });
     });
   });
 });
