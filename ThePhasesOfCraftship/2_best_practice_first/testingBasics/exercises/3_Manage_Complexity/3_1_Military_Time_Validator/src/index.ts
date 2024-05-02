@@ -12,6 +12,7 @@ export class MilitaryTimeValidator {
     return (
       parsedHour <= 24 &&
       parsedHour >= 0 &&
+      parsedHour % 1 === 0 &&
       parsedMinutes <= 59 &&
       parsedMinutes >= 0
     );
