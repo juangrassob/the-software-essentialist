@@ -8,13 +8,26 @@ type ParseMilitaryTimeResult = {
   minutes: string;
 };
 
+class MilitaryTimeParser {
+  static parseTimeRange(timeRange: string): ParsedTimeRangeResult {
+    const [startTime, endTime] = timeRange.split(" - ");
+
+    return { startTime, endTime };
+  }
+
+  static parseMilitaryTime(militaryTime: string): ParseMilitaryTimeResult {
+    const [hour, minutes] = militaryTime.split(":");
+    return { hour, minutes };
+  }
+}
+
 export class MilitaryTimeRangeValidator {
   static validate(timeRange: string): boolean {
     const validTimeRange = this.validateTimeRange(timeRange);
 
     if (!validTimeRange) return false;
 
-    const { startTime, endTime } = this.parseTimeRange(timeRange);
+    const { startTime, endTime } = MilitaryTimeParser.parseTimeRange(timeRange);
 
     const validStartTime = this.validateMilitaryTime(startTime);
     const validEndTime = this.validateMilitaryTime(endTime);
@@ -28,18 +41,13 @@ export class MilitaryTimeRangeValidator {
     return timeRange.split(" - ").length === 2;
   }
 
-  private static parseTimeRange(timeRange: string): ParsedTimeRangeResult {
-    const [startTime, endTime] = timeRange.split(" - ");
-
-    return { startTime, endTime };
-  }
-
   private static validateMilitaryTime(militaryTime: string): boolean {
-    const validMilitaryTime = this.validateMilitaryTimeFormat(militaryTime);
+    const validMilitaryTime = militaryTime.length !== 2;
 
     if (!validMilitaryTime) return false;
 
-    const { hour, minutes } = this.parseMilitaryTime(militaryTime);
+    const { hour, minutes } =
+      MilitaryTimeParser.parseMilitaryTime(militaryTime);
 
     const validHour = this.validateHour(hour);
     const validMinutes = this.validateMinutes(minutes);
@@ -47,22 +55,9 @@ export class MilitaryTimeRangeValidator {
     return validHour && validMinutes;
   }
 
-  private static parseMilitaryTime(
-    militaryTime: string
-  ): ParseMilitaryTimeResult {
-    const [hour, minutes] = militaryTime.split(":");
-    return { hour, minutes };
-  }
-
-  private static validateMilitaryTimeFormat(militaryTime: string): boolean {
-    return militaryTime.length !== 2;
-  }
-
   private static validateHour(hour: string): boolean {
     if (/[^0-9]/.test(hour)) return false;
-
     const parsedHour = Number.parseInt(hour);
-
     return parsedHour <= 24 && parsedHour >= 0;
   }
 
